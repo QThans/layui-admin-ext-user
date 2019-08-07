@@ -1,0 +1,26 @@
+{
+    "name": "thans/layui-admin-ext-user",
+    "description": "layui-admin user extension",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thans",
+            "email": "360641274@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "thans/tp-jwt-auth": "^1.0",
+        "thans/layui-admin": "^1.1.2",
+        "overtrue/easy-sms": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "thans\\user\\": "src"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}

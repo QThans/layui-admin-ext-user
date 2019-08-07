@@ -1,0 +1,84 @@
+<?php
+
+use Phinx\Db\Adapter\MysqlAdapter;
+use think\migration\Migrator;
+use think\migration\db\Column;
+
+class User extends Migrator
+{
+    /**
+     * Change Method.
+     *
+     * Write your reversible migrations using this method.
+     *
+     * More information on writing migrations is available here:
+     * http://docs.phinx.org/en/latest/migrations.html#the-abstractmigration-class
+     *
+     * The following commands can be used in this method and Phinx will
+     * automatically reverse them when rolling back:
+     *
+     *    createTable
+     *    renameTable
+     *    addColumn
+     *    renameColumn
+     *    addIndex
+     *    addForeignKey
+     *
+     * Remember to call "create()" or "update()" and NOT "save()" when working
+     * with the Table class.
+     */
+    public function change()
+    {
+        $table = $this->table('user');
+        $table->addColumn('name', 'string',
+            ['limit' => 100, 'default' => '', 'null' => true])
+            ->addColumn('salt', 'string', ['limit' => 20])
+            ->addColumn('password', 'string', ['limit' => 128])
+            ->addColumn('nickname', 'string',
+                ['limit' => 100, 'default' => '', 'null' => true])
+            ->addColumn('avatar', 'string', ['limit' => 255, 'default' => ''])
+            ->addColumn('email', 'string',
+                ['limit' => 100, 'null' => true, 'default' => ''])
+            ->addColumn('mobile', 'string',
+                ['limit' => 11, 'null' => true, 'default' => ''])
+            ->addColumn('email_verified_time', 'integer',
+                [
+                    'limit'   => MysqlAdapter::INT_REGULAR,
+                    'default' => null,
+                    'null'    => true,
+                ])
+            ->addColumn('mobile_verified_time', 'integer',
+                ['limit'   => MysqlAdapter::INT_REGULAR,
+                 'default' => null,
+                 'null'    => true,
+                ])
+            ->addColumn('status', 'integer', [
+                'limit'   => MysqlAdapter::INT_TINY,
+                'default' => 0,
+                'null'    => false,
+            ])
+            ->addColumn('register_ip', 'string',
+                ['limit' => 15, 'comment' => '注册IP', 'default' => ''])
+            ->addColumn('last_login_ip', 'string',
+                ['limit' => 15, 'comment' => '最后登录IP', 'default' => ''])
+            ->addColumn('last_login_time', 'integer', [
+                'limit'   => MysqlAdapter::INT_REGULAR,
+                'default' => 0,
+                'comment' => '最后登录时间',
+            ])
+            ->addColumn('create_time', 'integer',
+                ['limit' => MysqlAdapter::INT_REGULAR, 'default' => 0])
+            ->addColumn('update_time', 'integer',
+                ['limit' => MysqlAdapter::INT_REGULAR, 'default' => 0])
+            ->addColumn('delete_time', 'integer', [
+                'limit'   => MysqlAdapter::INT_REGULAR,
+                'default' => null,
+                'null'    => true,
+            ])
+            ->addIndex(['nickname'], ['unique' => false])
+            ->addIndex(['name'], ['unique' => false])
+            ->addIndex(['email'], ['unique' => false])
+            ->addIndex(['mobile'], ['unique' => false])
+            ->create();
+    }
+}
