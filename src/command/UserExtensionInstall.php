@@ -79,14 +79,19 @@ class UserExtensionInstall extends Command
         //插入用户管理菜单到后台
         $parent = Menu::where('name', '用户管理')->find();
         if ($parent) {
-            Menu::create([
-                'name'      => '用户管理',
-                'parent_id' => $parent['id'],
-                'icon'      => '',
-                'uri'       => 'admin/user',
-                'order'     => Menu::count() + 1,
-            ]);
-            $output->writeln('Menu create success');
+            if (! Menu::where('uri', 'admin/user')->find()) {
+                Menu::create([
+                    'name'      => '用户管理',
+                    'parent_id' => $parent['id'],
+                    'icon'      => '',
+                    'uri'       => 'admin/user',
+                    'order'     => Menu::count() + 1,
+                ]);
+                $output->writeln('Menu create success');
+            } else {
+                $output->writeln('Menu is exist');
+            }
+
         } else {
             $output->writeln('Menu create fail');
         }
