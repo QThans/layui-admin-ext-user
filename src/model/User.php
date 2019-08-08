@@ -25,6 +25,10 @@ class User extends Model
             'last_time' => 'timestamp',
         ];
 
+    public function getLastLoginTimeAttr($value)
+    {
+        return $value ? date('Y-m-d H:i:s', $value) : '';
+    }
 
     public static function getUserByName($name)
     {

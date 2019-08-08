@@ -2,6 +2,7 @@
 
 namespace thans\user\command;
 
+use thans\layuiAdmin\model\Menu;
 use think\console\Input;
 use think\console\Output;
 use think\console\Command;
@@ -49,6 +50,20 @@ class UserExtensionInstall extends Command
         copy_dir($this->getPath().'database'.DIRECTORY_SEPARATOR.'migrations',
             $migrationsPath);
         $output->writeln('Copy database migrations end');
+        //插入用户管理菜单到后台
+        $parent = Menu::where('name', '用户管理')->find();
+        if ($parent) {
+            Menu::create([
+                'name'      => '用户管理',
+                'parent_id' => $parent['id'],
+                'icon'      => '',
+                'uri'       => 'admin/user',
+                'order'     => Menu::count() + 1,
+            ]);
+            $output->writeln('Menu create success');
+        } else {
+            $output->writeln('Menu create fail');
+        }
     }
 
     public function createController($output)

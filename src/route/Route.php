@@ -61,3 +61,10 @@ Route::group('', function () {
         Route::post('password', '\app\user\controller\SettingController@password');
     });
 })->middleware(\thans\jwt\middleware\JWTAuthAndRefresh::class);
+
+Route::group('admin', function () {
+    Route::resource('user', '\app\admin\controller\UserController');
+})->middleware([
+    thans\layuiAdmin\middleware\Login::class,
+    thans\layuiAdmin\middleware\AdminsAuth::class,
+]);

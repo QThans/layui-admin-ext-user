@@ -31,7 +31,7 @@ trait Register
             md5($request->param('code'))
         );
 
-        $user = $this->create($request->param());
+        $user = $this->create($request);
 
         return $this->registerEnd($request, $user) ?: Json::success('注册成功');
     }

@@ -33,7 +33,7 @@ trait Login
             $request->param('mobile'),
             md5($request->param('code'))
         );
-        $login = $this->loginVerify($request->param());
+        $login = $this->loginVerify($request);
 
         return $this->loginEnd($request, $login) ?: Json::success('登录成功', $login);
     }
