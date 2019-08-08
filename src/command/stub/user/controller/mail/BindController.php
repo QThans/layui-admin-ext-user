@@ -3,7 +3,6 @@
 
 namespace app\user\controller\mail;
 
-
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\User;
 use thans\user\traits\mail\Bind;

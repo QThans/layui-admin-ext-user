@@ -3,7 +3,6 @@
 
 namespace app\user\controller;
 
-
 use thans\jwt\facade\JWTAuth;
 use thans\layuiAdmin\facade\Json;
 use thans\user\model\User;
@@ -33,7 +32,6 @@ class LoginController
             $token = JWTAuth::builder(['user_id' => $user['id']]);
 
             return $token;
-
         }
         Json::error('密码错误');
     }

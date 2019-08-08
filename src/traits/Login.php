@@ -3,7 +3,6 @@
 
 namespace thans\user\traits;
 
-
 use thans\layuiAdmin\facade\Json;
 use think\facade\Validate;
 use think\Request;

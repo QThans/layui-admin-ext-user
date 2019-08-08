@@ -3,7 +3,6 @@
 
 namespace thans\user\provider;
 
-
 class Config
 {
     public function sms()

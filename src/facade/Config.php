@@ -3,7 +3,6 @@
 
 namespace thans\user\facade;
 
-
 use think\Facade;
 
 class Config extends Facade

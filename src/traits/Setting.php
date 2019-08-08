@@ -3,7 +3,6 @@
 
 namespace thans\user\traits;
 
-
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Config;
 use thans\user\facade\User;
