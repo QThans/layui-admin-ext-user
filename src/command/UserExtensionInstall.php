@@ -42,6 +42,32 @@ class UserExtensionInstall extends Command
                 $output->writeln('Create config file error');
             }
         }
+        $configFilePath = env('app_path').'..'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'sms.php';
+        if (is_file($configFilePath)) {
+            $output->writeln('Config sms file is exist');
+        } else {
+            $res = copy($this->getPath().'config'
+                .DIRECTORY_SEPARATOR.'sms.php',
+                $configFilePath);
+            if ($res) {
+                $output->writeln('Create sms config file success:'.$configFilePath);
+            } else {
+                $output->writeln('Create sms config file error');
+            }
+        }
+        $configFilePath = env('app_path').'..'.DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'mail.php';
+        if (is_file($configFilePath)) {
+            $output->writeln('Config mail file is exist');
+        } else {
+            $res = copy($this->getPath().'config'
+                .DIRECTORY_SEPARATOR.'sms.php',
+                $configFilePath);
+            if ($res) {
+                $output->writeln('Create mail config file success:'.$configFilePath);
+            } else {
+                $output->writeln('Create mail config file error');
+            }
+        }
     }
 
     public function createMigrations($output)
