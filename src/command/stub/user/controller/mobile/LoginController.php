@@ -3,7 +3,6 @@
 
 namespace app\user\controller\mobile;
 
-
 use thans\jwt\facade\JWTAuth;
 use thans\layuiAdmin\facade\Json;
 use thans\user\model\User;

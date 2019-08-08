@@ -3,7 +3,6 @@
 
 namespace thans\user\traits\mobile;
 
-
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Config;
 use thans\user\facade\Sms;

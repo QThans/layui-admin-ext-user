@@ -3,7 +3,6 @@
 
 namespace thans\user\traits\mail;
 
-
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Token;
 use thans\user\facade\User;

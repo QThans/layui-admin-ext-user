@@ -3,7 +3,6 @@
 
 namespace app\user\controller\mobile;
 
-
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\User;
 use thans\user\traits\mobile\Reset;

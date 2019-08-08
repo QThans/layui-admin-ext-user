@@ -104,5 +104,4 @@ trait Reset
     public function resetEnd(Request $request, $user)
     {
     }
-
 }
