@@ -91,7 +91,6 @@ class UserExtensionInstall extends Command
             } else {
                 $output->writeln('Menu is exist');
             }
-
         } else {
             $output->writeln('Menu create fail');
         }
