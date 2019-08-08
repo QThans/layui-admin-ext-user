@@ -1,5 +1,5 @@
 <?php
-
+//配置文档请看：https://github.com/overtrue/easy-sms
 $mailDefaultTmpl  = env('app_path').'user'.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR.'mail'.DIRECTORY_SEPARATOR
     .'code.html';
 $mailDefaultTitle = '【'.config('app.app_name').'】您本次的验证码是';

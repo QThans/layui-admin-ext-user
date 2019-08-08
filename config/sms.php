@@ -1,5 +1,5 @@
 <?php
-
+//配置文档请看：https://github.com/overtrue/easy-sms
 return [
     // HTTP 请求的超时时间（秒）
     'timeout'  => 5.0,
@@ -20,9 +20,10 @@ return [
             'file' => '/tmp/easy-sms.log',
         ],
         'aliyun'   => [
-            'access_key_id'     => '',
-            'access_key_secret' => '',
-            'sign_name'         => '',
+            'access_key_id'     => env('aliyun.access_key_id'),
+            //配置模式以gateways为父级 阿里云则：env('aliyun.access_key_id') submail则env('submail.access_key_id')
+            'access_key_secret' => env('aliyun.access_key_secret'),
+            'sign_name'         => env('aliyun.sign_name'),
         ],
         //...
     ],
