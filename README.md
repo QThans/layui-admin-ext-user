@@ -5,6 +5,13 @@
 <p align="center">
 </p>
 
+## Installation
+```
+
+composer require thans/layui-admin-ext-user
+
+```
+
 ## License
 
 MIT
