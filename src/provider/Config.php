@@ -19,4 +19,11 @@ class Config
 
         return array_merge($config, \think\facade\Config::get('user.') ?? []);
     }
+
+    public function mail()
+    {
+        $config = require __DIR__.'/../../config/mail.php';
+
+        return array_merge($config, \think\facade\Config::get('mail.') ?? []);
+    }
 }

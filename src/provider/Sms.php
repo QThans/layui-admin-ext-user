@@ -23,10 +23,8 @@ class Sms
         $this->sms = new EasySms($this->config);
     }
 
-    public function sendMobileCode($mobile, $msg, $template = '')
+    public function send($mobile, $msg, $config)
     {
-
-        $config = Config::user()['sms_template'][$template];
         $data   = $config['data'];
         foreach ($data as &$val) {
             foreach ($msg as $key => $m) {

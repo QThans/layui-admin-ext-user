@@ -1,31 +1,39 @@
 <?php
+
+$mailDefaultTmpl  = env('app_path').'user'.DIRECTORY_SEPARATOR.'view'.DIRECTORY_SEPARATOR.'mail'.DIRECTORY_SEPARATOR
+    .'code.html';
+$mailDefaultTitle = '【'.config('app.app_name').'】您本次的验证码是';
+
 return [
-    'mail_host'       => env('MAIL_HOST'),
-    'mail_port'       => env('MAIL_PORT'),
-    'mail_username'   => env('MAIL_USERNAME'),
-    'mail_password'   => env('MAIL_PASSWORD'),
-    'mail_encryption' => env('MAIL_ENCRYPTION'),
-    'sms_template'    => [
+    'avatar'        => [
+        'size' => 1024000, //bytes
+        'ext'  => 'jpg,png,jpeg',
+    ],
+    'send_template' => [
         'register'        => [
-            'tmpl'     => "您的验证码是：\$code，请妥善保管。",
-            'gateways' => [
+            'mail_title' => $mailDefaultTitle,
+            'mail_tmpl'  => $mailDefaultTmpl,
+            'tmpl'       => "您的验证码是：\$code，请妥善保管。",
+            'gateways'   => [
                 "submail" => [
                     "template" => "QgkCv",
                 ],
             ],
-            'data'     => [
+            'data'       => [
                 'code'    => '$code',
                 'project' => 'QgkCv',
             ],//可扩展字段
         ],
         'forget_password' => [
-            'tmpl'     => "您的验证码是：\$code，请妥善保管。",
-            'gateways' => [
+            'mail_title' => $mailDefaultTitle,
+            'mail_tmpl'  => $mailDefaultTmpl,
+            'tmpl'       => "您的验证码是：\$code，请妥善保管。",
+            'gateways'   => [
                 "submail" => [
                     "template" => "QgkCv",
                 ],
             ],
-            'data'     => [
+            'data'       => [
                 'code'    => '$code',
                 'project' => 'QgkCv',
             ],//可扩展字段
@@ -43,25 +51,43 @@ return [
             ],//可扩展字段
         ],
         'reset'           => [
-            'tmpl'     => "您的验证码是：\$code，请妥善保管。",
-            'gateways' => [
+            'mail_title' => $mailDefaultTitle,
+            'mail_tmpl'  => $mailDefaultTmpl,
+            'tmpl'       => "您的验证码是：\$code，请妥善保管。",
+            'gateways'   => [
                 "submail" => [
                     "template" => "QgkCv",
                 ],
             ],
-            'data'     => [
+            'data'       => [
                 'code'    => '$code',
                 'project' => 'QgkCv',
             ],//可扩展字段
         ],
         'reset_old'       => [
-            'tmpl'     => "您的验证码是：\$code，请妥善保管。",
-            'gateways' => [
+            'mail_title' => $mailDefaultTitle,
+            'mail_tmpl'  => $mailDefaultTmpl,
+            'tmpl'       => "您的验证码是：\$code，请妥善保管。",
+            'gateways'   => [
                 "submail" => [
                     "template" => "QgkCv",
                 ],
             ],
-            'data'     => [
+            'data'       => [
+                'code'    => '$code',
+                'project' => 'QgkCv',
+            ],//可扩展字段
+        ],
+        'bind'            => [
+            'mail_title' => $mailDefaultTitle,
+            'mail_tmpl'  => $mailDefaultTmpl,
+            'tmpl'       => "您的验证码是：\$code，请妥善保管。",
+            'gateways'   => [
+                "submail" => [
+                    "template" => "QgkCv",
+                ],
+            ],
+            'data'       => [
                 'code'    => '$code',
                 'project' => 'QgkCv',
             ],//可扩展字段

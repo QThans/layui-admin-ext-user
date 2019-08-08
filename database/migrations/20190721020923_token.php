@@ -31,7 +31,7 @@ class Token extends Migrator
     {
         $table = $this->table('token', ['id' => false]);
         $table->addColumn('scene', 'string', ['limit' => 15, 'comment' => '场景'])
-            ->addColumn('object', 'string', ['limit' => 15, 'comment' => '场景'])
+            ->addColumn('object', 'string', ['limit' => 100, 'comment' => '场景'])
             ->addColumn(
                 'token',
                 'string',

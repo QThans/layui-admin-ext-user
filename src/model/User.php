@@ -9,6 +9,9 @@ use think\model\concern\SoftDelete;
 class User extends Model
 {
     use SoftDelete;
+
+    protected $autoWriteTimestamp = true;
+
     //敏感字段 不是自己的数据不返回
     protected $sensitive = ['email', 'mobile'];
 

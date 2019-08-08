@@ -5,6 +5,7 @@ namespace thans\user\traits\mobile;
 
 
 use thans\layuiAdmin\facade\Json;
+use thans\user\facade\Config;
 use thans\user\facade\Sms;
 use thans\user\facade\Token;
 use thans\user\model\User;
@@ -25,9 +26,9 @@ trait Mobile
             $this->sendCodeInterval
         );
 
-        Sms::sendMobileCode($mobile, [
+        Sms::send($mobile, [
             'code' => $code,
-        ], $this->scene);
+        ], Config::user()['send_template'][$this->scene]);
 
         //send code
         return $this->sendCodeEnd($request, $code)

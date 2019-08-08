@@ -1,6 +1,6 @@
 <?php
 
-namespace thans\user\traits\mobile;
+namespace thans\user\traits\mail;
 
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Token;
@@ -8,13 +8,13 @@ use thans\user\facade\User;
 use think\facade\Cache;
 use think\Request;
 
-//重置手机号
+//重置邮箱
 trait Reset
 {
-    use Mobile;
+    use Mail;
 
     protected $scene = 'reset';
-    //是否可以存在手机号
+    //是否可以存在邮箱
     protected $canExist = true;
 
     protected $needRegister = true;
@@ -52,30 +52,30 @@ trait Reset
         $this->canExist     = true;
         $this->scene        = 'reset_old';
         $this->needRegister = false;
-        $mobile             = User::info('mobile');
-        if (! $mobile) {
+        $mail               = User::info('email');
+        if (! $mail) {
             Json::error('请先绑定手机号');
         }
-        $code = $this->sendCode($request, $mobile);
+        $code = $this->sendCode($request, $mail);
 
         return $this->sendOldCodeEnd($request, $code)
             ?: Json::success('验证码发送成功');
     }
 
-    public function sendOldCodeEnd($request, $mobile)
+    public function sendOldCodeEnd($request, $mail)
     {
     }
 
-    //第一步验证旧手机号
+    //第一步验证旧邮箱
     public function validateOld(Request $request)
     {
         $this->oldValidator($request);
         Token::checkToken(
             'reset_old',
-            User::info('mobile'),
+            User::info('email'),
             md5($request->param('code'))
         );
-        Cache::set(User::id().'_reset_mobile_validate_old', true, 600);
+        Cache::set(User::id().'_reset_mail_validate_old', true, 600);
 
         return $this->validateOldEnd($request) ?: Json::success('验证成功');
     }
@@ -87,18 +87,18 @@ trait Reset
     public function reset(Request $request)
     {
         $this->validator($request);
-        if (! Cache::get(User::id().'_reset_mobile_validate_old')) {
-            Json::success('请先验证现有手机号');
+        if (! Cache::get(User::id().'_reset_mail_validate_old')) {
+            Json::success('请先验证现有邮箱');
         }
         Token::checkToken(
             $this->scene,
-            $request->param('mobile'),
+            $request->param('mail'),
             md5($request->param('code'))
         );
-        Cache::set(User::id().'_reset_mobile_validate_old', false);
+        Cache::set(User::id().'_reset_mail_validate_old', false);
         $user = $this->update($request->param());
 
-        return $this->resetEnd($request, $user) ?: Json::success('更换手机号成功');
+        return $this->resetEnd($request, $user) ?: Json::success('更换邮箱成功');
     }
 
     public function resetEnd(Request $request, $user)
