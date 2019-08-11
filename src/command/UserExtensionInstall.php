@@ -113,7 +113,6 @@ EOD;
             file_put_contents($path, $config, FILE_APPEND);
             $output->writeln('Mail config has created');
         }
-
     }
 
     public function createController($output)
