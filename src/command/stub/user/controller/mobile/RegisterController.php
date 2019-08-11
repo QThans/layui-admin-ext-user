@@ -27,8 +27,7 @@ class RegisterController
         return User::create([
             'mobile'      => $data['mobile'],
             'register_ip' => \think\facade\Request::ip(),
-            'salt'        => $data['salt'],
-            'password'    => encrypt_password($data['password'], $data['salt']),
+            'password'    => $data['password'],
         ]);
     }
 }

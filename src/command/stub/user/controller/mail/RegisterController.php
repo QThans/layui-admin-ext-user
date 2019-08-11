@@ -25,10 +25,9 @@ class RegisterController
         $data['salt'] = random_str(20);
 
         return User::create([
-            'email'    => $data['mail'],
+            'email'       => $data['mail'],
             'register_ip' => \think\facade\Request::ip(),
-            'salt'     => $data['salt'],
-            'password' => encrypt_password($data['password'], $data['salt']),
+            'password'    => $data['password'],
         ]);
     }
 }
