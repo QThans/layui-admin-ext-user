@@ -36,16 +36,6 @@ class Sms
             $content = str_replace('$'.$key, $m, $content);
         }
         try {
-            dump([
-                'content'  => $content,
-                'template' => function ($gateway) use ($config) {
-                    if (isset($config['gateways'][$gateway->getName()]['template'])) {
-                        return $config['gateways'][$gateway->getName()]['template'];
-                    }
-                },
-                'data'     => $data,
-            ]);
-
             return $this->sms->send($mobile, [
                 'content'  => $content,
                 'template' => function ($gateway) use ($config) {
