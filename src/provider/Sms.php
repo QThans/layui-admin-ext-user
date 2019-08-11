@@ -25,7 +25,7 @@ class Sms
 
     public function send($mobile, $msg, $config)
     {
-        $data   = $config['data'];
+        $data = $config['data'];
         foreach ($data as &$val) {
             foreach ($msg as $key => $m) {
                 $val = str_replace('$'.$key, $m, $val);
@@ -36,6 +36,16 @@ class Sms
             $content = str_replace('$'.$key, $m, $content);
         }
         try {
+            dump([
+                'content'  => $content,
+                'template' => function ($gateway) use ($config) {
+                    if (isset($config['gateways'][$gateway->getName()]['template'])) {
+                        return $config['gateways'][$gateway->getName()]['template'];
+                    }
+                },
+                'data'     => $data,
+            ]);
+
             return $this->sms->send($mobile, [
                 'content'  => $content,
                 'template' => function ($gateway) use ($config) {
@@ -50,7 +60,7 @@ class Sms
             foreach ($e->getExceptions() as $exception) {
                 $error[] = $exception->getMessage();
             }
-            Log::error('短信发送失败', implode(PHP_EOL, $error));
+            Log::error('短信发送失败', $error);
             Json::error('短信发送失败');
         }
     }

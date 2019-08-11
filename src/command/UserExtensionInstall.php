@@ -94,6 +94,26 @@ class UserExtensionInstall extends Command
         } else {
             $output->writeln('Menu create fail');
         }
+
+        $path = env('app_path').'..'.DIRECTORY_SEPARATOR.'.env';
+        if (file_exists($path)
+            && strpos(file_get_contents($path), 'MAIL')
+        ) {
+            $output->writeln('Mail config is exists');
+        } else {
+            $config = <<<EOD
+[MAIL]
+HOST=smtp.qq.com
+ENCRYPTION=ssl
+PORT=465
+USERNAME=
+PASSWORD=
+EOD;
+
+            file_put_contents($path, $config, FILE_APPEND);
+            $output->writeln('Mail config has created');
+        }
+
     }
 
     public function createController($output)

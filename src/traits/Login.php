@@ -20,7 +20,7 @@ trait Login
         if (Validate::isMobile($account)) {
             $where[] = ['mobile', '=', $account];
         }
-        $login = $this->loginVerify(isset($where) ? $where : ['name', '=', $account], $request);
+        $login = $this->loginVerify(isset($where) ? $where : ['name', '=', $account], $request->param());
 
         return $this->loginEnd($request, $login) ?: Json::success('登录成功', $login);
     }

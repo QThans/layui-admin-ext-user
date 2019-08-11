@@ -26,6 +26,7 @@ class RegisterController
 
         return User::create([
             'email'    => $data['mail'],
+            'register_ip' => \think\facade\Request::ip(),
             'salt'     => $data['salt'],
             'password' => encrypt_password($data['password'], $data['salt']),
         ]);

@@ -29,6 +29,10 @@ class LoginController
             Json::error('用户不存在');
         }
         if ($user['password'] == encrypt_password($data['password'], $user['salt'])) {
+            $user->last_login_ip   = \think\facade\Request::ip();
+            $user->last_login_time = time();
+            $user->save();
+
             $token = JWTAuth::builder(['user_id' => $user['id']]);
 
             return $token;

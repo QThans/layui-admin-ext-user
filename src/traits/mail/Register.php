@@ -32,7 +32,7 @@ trait Register
             md5($request->param('code'))
         );
 
-        $user = $this->create($request);
+        $user = $this->create($request->param());
 
         return $this->registerEnd($request, $user) ?: Json::success('注册成功');
     }

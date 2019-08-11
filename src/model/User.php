@@ -22,13 +22,8 @@ class User extends Model
 
     protected $type
         = [
-            'last_time' => 'timestamp',
+            'last_login_time' => 'timestamp',
         ];
-
-    public function getLastLoginTimeAttr($value)
-    {
-        return $value ? date('Y-m-d H:i:s', $value) : '';
-    }
 
     public static function getUserByName($name)
     {

@@ -25,9 +25,10 @@ class RegisterController
         $data['salt'] = random_str(20);
 
         return User::create([
-            'mobile'   => $data['mobile'],
-            'salt'     => $data['salt'],
-            'password' => encrypt_password($data['password'], $data['salt']),
+            'mobile'      => $data['mobile'],
+            'register_ip' => \think\facade\Request::ip(),
+            'salt'        => $data['salt'],
+            'password'    => encrypt_password($data['password'], $data['salt']),
         ]);
     }
 }
