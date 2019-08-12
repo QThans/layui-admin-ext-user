@@ -56,8 +56,8 @@ class UserController
         $form = new Form(new User(), new \app\admin\validate\User());
         $form->text()->label('用户名')->name('name')->rules('', false, 5, 50, '请输入5-50位的用户名');
         $form->text()->label('昵称')->name('nickname')->rules('', false, 5, 50, '请输入5-50位的用昵称');
-        $form->text()->label('手机号')->name('mobile')->rules('mobile',false);
-        $form->text()->label('邮箱')->name('email')->rule('email',false);
+        $form->text()->label('手机号')->name('mobile')->rules('mobile', false);
+        $form->text()->label('邮箱')->name('email')->rule('email', false);
         $form->text()->label('密码')->name('password')->placeholder('不更新留空');
         $op[] = ['val' => 0, 'title' => '正常'];
         $op[] = ['val' => 1, 'title' => '封禁'];
