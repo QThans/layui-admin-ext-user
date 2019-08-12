@@ -63,7 +63,7 @@ Route::group('', function () {
 })->middleware(\thans\jwt\middleware\JWTAuthAndRefresh::class);
 
 Route::group('admin', function () {
-    Route::resource('user', '\app\admin\controller\UserController');
+    Route::resource('user', 'app\admin\controller\UserController');
 })->middleware([
     thans\layuiAdmin\middleware\Login::class,
     thans\layuiAdmin\middleware\AdminsAuth::class,
