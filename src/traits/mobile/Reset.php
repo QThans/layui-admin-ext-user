@@ -4,7 +4,7 @@ namespace thans\user\traits\mobile;
 
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Token;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use think\facade\Cache;
 use think\Request;
 
@@ -52,7 +52,7 @@ trait Reset
         $this->canExist     = true;
         $this->scene        = 'reset_old';
         $this->needRegister = false;
-        $mobile             = User::info('mobile');
+        $mobile             = Auth::info('mobile');
         if (! $mobile) {
             Json::error('请先绑定手机号');
         }
@@ -72,10 +72,10 @@ trait Reset
         $this->oldValidator($request);
         Token::checkToken(
             'reset_old',
-            User::info('mobile'),
+            Auth::info('mobile'),
             md5($request->param('code'))
         );
-        Cache::set(User::id().'_reset_mobile_validate_old', true, 600);
+        Cache::set(Auth::id().'_reset_mobile_validate_old', true, 600);
 
         return $this->validateOldEnd($request) ?: Json::success('验证成功');
     }
@@ -87,7 +87,7 @@ trait Reset
     public function reset(Request $request)
     {
         $this->validator($request);
-        if (! Cache::get(User::id().'_reset_mobile_validate_old')) {
+        if (! Cache::get(Auth::id().'_reset_mobile_validate_old')) {
             Json::success('请先验证现有手机号');
         }
         Token::checkToken(
@@ -95,7 +95,7 @@ trait Reset
             $request->param('mobile'),
             md5($request->param('code'))
         );
-        Cache::set(User::id().'_reset_mobile_validate_old', false);
+        Cache::set(Auth::id().'_reset_mobile_validate_old', false);
         $user = $this->update($request->param());
 
         return $this->resetEnd($request, $user) ?: Json::success('更换手机号成功');

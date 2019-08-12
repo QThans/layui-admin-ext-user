@@ -5,7 +5,7 @@ namespace thans\user\traits\mobile;
 
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Token;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use think\Request;
 
 trait Bind
@@ -29,7 +29,7 @@ trait Bind
 
     public function __construct()
     {
-        if (User::info('mobile')) {
+        if (Auth::info('mobile')) {
             Json::error('您已经绑定过手机号');
         }
     }

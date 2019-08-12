@@ -5,7 +5,7 @@ namespace thans\user\traits;
 
 use thans\layuiAdmin\facade\Json;
 use thans\user\facade\Config;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use think\facade\Env;
 use think\Request;
 

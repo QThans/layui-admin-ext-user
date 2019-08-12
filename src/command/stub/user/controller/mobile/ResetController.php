@@ -4,7 +4,7 @@
 namespace app\user\controller\mobile;
 
 use thans\layuiAdmin\facade\Json;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use thans\user\traits\mobile\Reset;
 use think\Request;
 
@@ -30,7 +30,7 @@ class ResetController
 
     public function update(array $data)
     {
-        $user         = User::info();
+        $user         = Auth::info();
         $user->mobile = $data['mobile'];
         $user->save();
 

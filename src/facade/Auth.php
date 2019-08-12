@@ -5,10 +5,10 @@ namespace thans\user\facade;
 
 use think\Facade;
 
-class User extends Facade
+class Auth extends Facade
 {
     protected static function getFacadeClass()
     {
-        return 'thans\user\provider\User';
+        return 'thans\user\provider\Auth';
     }
 }

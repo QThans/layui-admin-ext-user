@@ -4,7 +4,7 @@
 namespace app\user\controller\mail;
 
 use thans\layuiAdmin\facade\Json;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use thans\user\traits\mail\Bind;
 use think\Request;
 
@@ -22,7 +22,7 @@ class BindController
 
     public function update(array $data)
     {
-        $user        = User::info();
+        $user        = Auth::info();
         $user->email = $data['mail'];
         $user->save();
 

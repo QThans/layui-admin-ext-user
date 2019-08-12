@@ -4,7 +4,7 @@
 namespace app\user\controller;
 
 use thans\layuiAdmin\facade\Json;
-use thans\user\facade\User;
+use thans\user\facade\Auth;
 use thans\user\traits\Setting;
 use think\Request;
 
@@ -32,7 +32,7 @@ class SettingController
 
     public function updatePassword(array $data)
     {
-        $user = User::info();
+        $user = Auth::info();
         if ($user['password'] != encrypt_password($data['password'], $user['salt'])) {
             Json::error('请输入正确的密码');
         }
@@ -44,7 +44,7 @@ class SettingController
 
     public function update(array $data)
     {
-        $user = User::info();
+        $user = Auth::info();
         $user = $user->allowField($this->field)->save($data);
 
         return $user;
@@ -52,7 +52,7 @@ class SettingController
 
     public function updateAvatar($info, $url)
     {
-        $user         = User::info();
+        $user         = Auth::info();
         $user->avatar = $url;
         $user->save();
 
