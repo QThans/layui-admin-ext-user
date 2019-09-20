@@ -12,7 +12,6 @@
     "minimum-stability": "dev",
     "require": {
         "thans/tp-jwt-auth": "^1.0",
-        "thans/layui-admin": "^1.1.2",
         "overtrue/easy-sms": "^1.1",
         "phpmailer/phpmailer": "~6.0"
     },
@@ -23,5 +22,12 @@
         "files": [
             "src/helper.php"
         ]
+    },
+    "extra": {
+        "think": {
+            "services": [
+                "thans\\user\\Service"
+            ]
+        }
     }
 }

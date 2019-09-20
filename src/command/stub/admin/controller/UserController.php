@@ -43,7 +43,7 @@ class UserController
         $tb->column('last_login_time', '最后登录时间');
         $tb->column('last_login_ip', '最后登录IP');
         $tb->column('register_ip', '注册IP');
-        $url = url('app\admin\controller\UserController/edit', 'id={{ d.id }}');
+        $url = url('app\admin\controller\UserController/edit', ['id' => '{{ d.id }}']);
         if (AdminsAuth::check($url)) {
             $tb->tool('编辑', $url, 'formLayer');
         }

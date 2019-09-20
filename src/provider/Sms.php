@@ -46,11 +46,11 @@ class Sms
                 'data'     => $data,
             ]);
         } catch (NoGatewayAvailableException $e) {
-            $error = [];
+            $error = '';
             foreach ($e->getExceptions() as $exception) {
-                $error[] = $exception->getMessage();
+                $error .= $exception->getMessage().'。';
             }
-            Log::error('短信发送失败', $error);
+            Log::error('短信发送失败，错误记录:'.$error);
             Json::error('短信发送失败');
         }
     }

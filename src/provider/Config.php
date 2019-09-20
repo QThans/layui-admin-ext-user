@@ -9,20 +9,19 @@ class Config
     {
         $config = require __DIR__.'/../../config/sms.php';
 
-        return array_merge($config, \think\facade\Config::get('sms.') ?? []);
+        return array_merge($config, \think\facade\Config::get('sms') ?? []);
     }
 
     public function user()
     {
-        $config = require __DIR__.'/../../config/config.php';
-
-        return array_merge($config, \think\facade\Config::get('user.') ?? []);
+        $config = require __DIR__.'/../../config/user.php';
+        return array_merge($config, \think\facade\Config::get('user') ?? []);
     }
 
     public function mail()
     {
         $config = require __DIR__.'/../../config/mail.php';
 
-        return array_merge($config, \think\facade\Config::get('mail.') ?? []);
+        return array_merge($config, \think\facade\Config::get('mail') ?? []);
     }
 }
