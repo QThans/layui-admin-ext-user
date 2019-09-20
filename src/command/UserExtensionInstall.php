@@ -73,7 +73,6 @@ class UserExtensionInstall extends Command
 
     public function createMigrations($output)
     {
-
         $migrationsPath = App::getRootPath().'database'.DIRECTORY_SEPARATOR.'migrations';
         copy_dir($this->getPath().'database'.DIRECTORY_SEPARATOR.'migrations',
             $migrationsPath);
