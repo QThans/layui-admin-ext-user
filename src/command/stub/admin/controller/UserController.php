@@ -16,11 +16,6 @@ class UserController
 {
     use FormActions;
 
-    public function __construct()
-    {
-        $this->route = false;
-    }
-
     public function index(Request $request)
     {
         if ($request->isAjax()) {
@@ -38,8 +33,7 @@ class UserController
         $tb->column('mobile', '手机号');
         $tb->column('email', '邮箱');
         $tb->column('name', '用户名');
-        $tb->status()->option('0', '正常')->option('1', '封禁');
-        $tb->column('status', '状态', '80', 'status');
+        $tb->status()->option('0', '正常')->option('1', '封禁')->column('status', '状态', '80');
         $tb->column('last_login_time', '最后登录时间');
         $tb->column('last_login_ip', '最后登录IP');
         $tb->column('register_ip', '注册IP');
@@ -47,7 +41,10 @@ class UserController
         if (AdminsAuth::check($url)) {
             $tb->tool('编辑', $url, 'formLayer');
         }
-
+        $url = url('app\admin\controller\UserController/create');
+        if (AdminsAuth::check($url)) {
+            $tb->action('新增用户', $url);
+        }
         return $tb->render();
     }
 
@@ -57,8 +54,12 @@ class UserController
         $form->text()->label('用户名')->name('name')->rules('', false, 5, 50, '请输入5-50位的用户名');
         $form->text()->label('昵称')->name('nickname')->rules('', false, 5, 50, '请输入5-50位的用昵称');
         $form->text()->label('手机号')->name('mobile')->rules('mobile', false);
-        $form->text()->label('邮箱')->name('email')->rule('email', false);
-        $form->text()->label('密码')->name('password')->placeholder('不更新留空');
+        $form->text()->label('邮箱')->name('email')->rules('email', false);
+        $placeholder = '请输入密码';
+        if (input('id')) {
+            $placeholder = '留空不更新密码';
+        }
+        $form->text()->label('密码')->name('password')->placeholder($placeholder);
         $op[] = ['val' => 0, 'title' => '正常'];
         $op[] = ['val' => 1, 'title' => '封禁'];
         $form->select()->option($op)->label('状态')->name('status');
@@ -67,14 +68,6 @@ class UserController
     }
 
     public function delete($id)
-    {
-    }
-
-    public function create(Request $request)
-    {
-    }
-
-    public function save(Request $request)
     {
     }
 }

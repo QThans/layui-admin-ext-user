@@ -27,7 +27,12 @@
         "think": {
             "services": [
                 "thans\\user\\Service"
-            ]
+            ],
+            "config": {
+                "user": "config/user.php",
+                "sms" : "config/sms.php",
+                "mail": "config/mail.php"
+            }
         }
     }
 }

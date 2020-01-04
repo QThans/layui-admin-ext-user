@@ -18,7 +18,6 @@ class UserExtensionInstall extends Command
 
     public function execute(Input $input, Output $output)
     {
-        $this->createConfig($output);
         $this->createController($output);
         $this->createMigrations($output);
     }
@@ -26,49 +25,6 @@ class UserExtensionInstall extends Command
     public function getPath()
     {
         return __DIR__.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR.'..'.DIRECTORY_SEPARATOR;
-    }
-
-    public function createConfig($output)
-    {
-        $configFilePath = App::getConfigPath().'user.php';
-        if (is_file($configFilePath)) {
-            $output->writeln('Config file is exist');
-        } else {
-            $res = copy($this->getPath().'config'
-                .DIRECTORY_SEPARATOR.'user.php',
-                $configFilePath);
-            if ($res) {
-                $output->writeln('Create config file success:'.$configFilePath);
-            } else {
-                $output->writeln('Create config file error');
-            }
-        }
-        $configFilePath = App::getConfigPath().'sms.php';
-        if (is_file($configFilePath)) {
-            $output->writeln('Config sms file is exist');
-        } else {
-            $res = copy($this->getPath().'config'
-                .DIRECTORY_SEPARATOR.'sms.php',
-                $configFilePath);
-            if ($res) {
-                $output->writeln('Create sms config file success:'.$configFilePath);
-            } else {
-                $output->writeln('Create sms config file error');
-            }
-        }
-        $configFilePath = App::getConfigPath().'mail.php';
-        if (is_file($configFilePath)) {
-            $output->writeln('Config mail file is exist');
-        } else {
-            $res = copy($this->getPath().'config'
-                .DIRECTORY_SEPARATOR.'sms.php',
-                $configFilePath);
-            if ($res) {
-                $output->writeln('Create mail config file success:'.$configFilePath);
-            } else {
-                $output->writeln('Create mail config file error');
-            }
-        }
     }
 
     public function createMigrations($output)

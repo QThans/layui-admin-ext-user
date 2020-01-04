@@ -107,7 +107,7 @@ class User extends Model
 
     public static function init()
     {
-        if (strpos(App::VERSION, '6.0.0') === false) {
+        if (strpos(App::VERSION, '6.0') === false) {
             self::event('before_insert', function ($user) {
                 if (isset($user->name)) {
                     if ($user->name
